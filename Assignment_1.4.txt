@@ -1,0 +1,30 @@
+1. Read multiple JSON files into a directory to convert into a dataset. 
+I have files text1, text2, text3 in the directory JSON. 
+
+Answer:
+
+library(rjson)
+setwd("D:/R/Json") 
+# this should give you a character vector, with each file name represented by an entry
+filenames <- list.files(pattern="*.json") 
+# a list in which each element is one of your original JSON files
+myJSON <- lapply(filenames, function(x) fromJSON(file=x)) 
+View(as.data.frame(myJSON))
+
+2. Parse the following JSON into a data frame. 
+
+js<-'{ 
+"name": null, "release_date_local": null, "title": "3 (2011)", 
+"opening_weekend_take": 1234, "year": 2011, 
+"release_date_wide": "2011-09-16", "gross": 59954 
+}' 
+
+Answer:
+library(rjson)
+data.frame(t(unlist(fromJSON(js))))
+
+3. Write a script for Variable Binning using R. 
+
+Answer:
+V<-1:100
+tapply(v,cut(v,60))
